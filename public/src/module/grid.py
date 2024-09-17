@@ -1,16 +1,42 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-def afficher_grille():
+taille_grille = 3
+grille = np.array([['', '', ''], ['', '', ''], ['', '', '']])
+def afficher_grille(grille):
     plt.plot([1, 1], [0, 3], color='black', lw=2)
     plt.plot([2, 2], [0, 3], color='black', lw=2)
     plt.plot([0, 3], [1, 1], color='black', lw=2)
     plt.plot([0, 3], [2, 2], color='black', lw=2)
-    
+
+    for i in range(taille_grille):
+        for j in range(taille_grille):
+            if grille[i,j] == 'X':
+                plt.text(j + 0.5,2.5 - i, "X", fontsize=20, ha = 'center', va = 'center', color='red')
+            elif grille[i,j] == "O":
+                plt.text(j + 0.5,2.5 - i,"O", fontsize = 20,ha = 'center', va = 'center', color='blue')
+    plt.xlim(0,3)
+    plt.ylim(0,3)
     plt.show()
-    
-    
 
+def reponse(grille):
+    while True: 
+        try:
 
-afficher_grille()
+            ligne = int(input("Entrez le numéro de la ligne 1, 2 ou 3: ")) - 1 
+            colonne = int(input("Entrez le numéro de la colonne 1, 2 ou 3: ")) - 1 
+
+            if ligne in range(taille_grille) and colonne in range(taille_grille) and grille[ligne, colonne] == '':
+                return ligne, colonne 
+            else:
+                print("Case déjà occupé.")
+        except ValueError: 
+            print("Entrée invalide.")
+
+joueur = 'X'
+def placer_marque(grille,ligne,colonne, joueur):
+    grille[ligne, colonne] = joueur
+
+ligne, colonne = reponse(grille)
+placer_marque(grille, ligne, colonne, joueur)
+afficher_grille(grille)
