@@ -44,22 +44,36 @@ def match_nul(grille):
 
 # def victoire(grille, joueur_actuel):
 #     for i in range(taille_grille):
-#         if np.all(grille)
+#         if np.all(grille[i,:] == joueur_actuel) or np.all(grille[:,i] == joueur_actuel):
+#             return True
 
-
+def victoire(grille, joueur_actuel):
+    # Check rows and columns
+    for i in range(taille_grille):
+        if np.all(grille[i, :] == joueur_actuel) or np.all(grille[:, i] == joueur_actuel):
+            return True
+    # # Check diagonals
+    # if np.all(np.diag(grille) == joueur_actuel) or np.all(np.diag(np.fliplr(grille)) == joueur_actuel):
+    #     return True
+    return False
 
 def jeu():
     joueur_actuel = 'X'
     while True:
         ligne, colonne = reponse(grille)
         placer_marque(grille, ligne, colonne, joueur_actuel)
-        afficher_grille(grille)
-        joueur_actuel = 'O' if joueur_actuel == 'X' else 'X'
-        
-        if match_nul(grille):
+
+        if victoire(grille, joueur_actuel):
+            afficher_grille(grille)
+            print(f"Le joueur {joueur_actuel} a gagné!")
+            break
+        elif match_nul(grille):
+            afficher_grille(grille)
             print("Match nul")
             break
-
+        
+        joueur_actuel = 'O' if joueur_actuel == 'X' else 'X'
+        
 jeu()
 
 
