@@ -33,10 +33,17 @@ def reponse(grille):
         except ValueError: 
             print("Entrée invalide.")
 
-joueur = 'X'
-def placer_marque(grille,ligne,colonne, joueur):
+
+def placer_marque(grille, ligne, colonne, joueur):
     grille[ligne, colonne] = joueur
 
-ligne, colonne = reponse(grille)
-placer_marque(grille, ligne, colonne, joueur)
-afficher_grille(grille)
+def jeu():
+    joueur_actuel = 'X'
+    jeu_termine = False
+    while not jeu_termine:
+        ligne, colonne = reponse(grille)
+        placer_marque(grille, ligne, colonne, joueur_actuel)
+        afficher_grille(grille)
+        joueur_actuel = 'O' if joueur_actuel == 'X' else 'X'
+
+jeu()
