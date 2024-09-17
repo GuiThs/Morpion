@@ -37,13 +37,23 @@ def reponse(grille):
 def placer_marque(grille, ligne, colonne, joueur):
     grille[ligne, colonne] = joueur
 
+
+def match_nul(grille):
+    return np.all(grille != '')
+
+
 def jeu():
     joueur_actuel = 'X'
-    jeu_termine = False
-    while not jeu_termine:
+    while True:
         ligne, colonne = reponse(grille)
         placer_marque(grille, ligne, colonne, joueur_actuel)
         afficher_grille(grille)
         joueur_actuel = 'O' if joueur_actuel == 'X' else 'X'
+        
+        if match_nul(grille):
+            print("Match nul")
+            break
 
 jeu()
+
+
