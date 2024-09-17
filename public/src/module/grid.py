@@ -42,6 +42,12 @@ def match_nul(grille):
     return np.all(grille != '')
 
 
+# def victoire(grille, joueur_actuel):
+#     for i in range(taille_grille):
+#         if np.all(grille)
+
+
+
 def jeu():
     joueur_actuel = 'X'
     while True:
