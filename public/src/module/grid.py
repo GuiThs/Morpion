@@ -2,12 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-
-
 taille_grille = 3
 grille = np.array([['', '', ''], ['', '', ''], ['', '', '']])
 
+plt.ion()
+
+
 def afficher_grille(grille):
+    plt.clf()
     plt.plot([1, 1], [0, 3], color='black', lw=2)
     plt.plot([2, 2], [0, 3], color='black', lw=2)
     plt.plot([0, 3], [1, 1], color='black', lw=2)
