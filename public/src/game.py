@@ -10,7 +10,6 @@ def placer_marque(grille, ligne, colonne, joueur):
 def jeu():
     joueur_actuel = 'X'
     while True:
-        afficher_grille(grille)
         ligne, colonne = reponse(grille)
         placer_marque(grille, ligne, colonne, joueur_actuel)
 
